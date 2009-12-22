@@ -41,10 +41,21 @@ public class SettingsActivity extends PreferenceActivity
     static final String KEY_VOLUME_BEHAVIOR =
             "volume_button_setting";
 
+    private CheckBoxPreference mAlarmInSilentModePref;
+    
+    static final String KEY_ALARM_REQUIRES_UNLOCK = "alarm_requires_unlock";
+    
+    private CheckBoxPreference mAlarmRequiresUnlock;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
+        
+        mAlarmInSilentModePref =
+                (CheckBoxPreference) findPreference(KEY_ALARM_IN_SILENT_MODE);
+        
+        mAlarmRequiresUnlock = (CheckBoxPreference) findPreference(KEY_ALARM_REQUIRES_UNLOCK);
     }
 
     @Override
@@ -71,8 +82,12 @@ public class SettingsActivity extends PreferenceActivity
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MODE_RINGER_STREAMS_AFFECTED,
                     ringerModeStreamTypes);
-
             return true;
+            
+        } else if (preference == mAlarmRequiresUnlock) {
+        	             
+             Settings.System.putInt(getContentResolver(), KEY_ALARM_REQUIRES_UNLOCK, mAlarmRequiresUnlock.isChecked() ? 1 : 0);
+             return true;
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
