@@ -44,7 +44,7 @@
              with the wallpaper background. -->
         <activity android:name="AlarmAlertFullScreen"
                 android:excludeFromRecents="true"
-                android:theme="@android:style/Theme.Wallpaper.NoTitleBar"
+                android:theme="@android:style/Theme.NoTitleBar"
                 android:launchMode="singleInstance"
                 android:taskAffinity=""
                 android:configChanges="orientation|keyboardHidden|keyboard|navigation"/>
