@@ -218,6 +218,8 @@
       <item>1</item>
       <item>2</item>
     </string-array>
+	<string name="alarm_requires_unlock_title">Alarm requires unlock</string>
+	<string name="alarm_requires_unlock_summary">Must unlock phone to disable or snooze alarm</string>
 </resources>
 
 

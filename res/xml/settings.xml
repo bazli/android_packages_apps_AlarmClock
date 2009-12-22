@@ -46,4 +46,9 @@
         android:summary="@string/volume_button_setting_summary"
         android:defaultValue="2" />
 
+	<CheckBoxPreference
+		android:key="alarm_requires_unlock"
+		android:title="@string/alarm_requires_unlock_title"
+		android:summary="@string/alarm_requires_unlock_summary" />
+		
 </PreferenceScreen>

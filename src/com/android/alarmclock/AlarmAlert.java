@@ -22,6 +22,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -37,6 +38,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
+import android.provider.Settings;
 
 import java.util.Calendar;
 
@@ -78,8 +80,14 @@ public class AlarmAlert extends Activity {
         mVolumeBehavior = Integer.parseInt(vol);
 
         requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
+        final boolean requireUnlock = Settings.System.getInt(getContentResolver(), SettingsActivity.KEY_ALARM_REQUIRES_UNLOCK, 0) == 1;
+        
+        if (!requireUnlock) {
+        	getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+		   | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+        
         updateLayout();
 
         // Register to get the alarm killed intent.
